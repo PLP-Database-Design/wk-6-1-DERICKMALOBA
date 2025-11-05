@@ -6,7 +6,7 @@
 - **Week:** 1 (Due: November 5, 2025)  
 - **Version:** 1.0  
 - **Date Prepared:** November 5, 2025  
-- **Repository:** [Link to your team repo]  
+- **Repository:**  
 
 ---
 
