@@ -1,0 +1,80 @@
+📘 Book Store App — Test Case Design Document (Phase 2: Design & Early Execution)
+
+Version: 1.0
+Date: 11 November 2025
+Derived From: tests/test-plan.md
+Test Designer: Margaret Wairimu (Risk Analyst)
+Reviewed By: Derick Maloba (Test Manager)
+Executed By: Molefi Mothibi (Test Executor)
+
+🧭 1. Purpose
+
+This document translates the approved test plan into concrete test cases for the core features of the Book Store App, ensuring complete functional coverage, traceability to requirements (FR codes), and alignment with identified risks.
+
+🔗 2. Traceability Summary
+FR Code| Functional Area|	Related Risk| Test Case IDs
+FR-O01|	Catalog & Discovery| Missing or incorrect search/filter results	|TC_01 – TC_05
+FR-O02|	Cart & Checkout| Checkout flow errors or data loss	|TC_06 – TC_10
+FR-O03|	Payments| Paystack integration fails |TC_11 – TC_13
+FR-O04–O05|	Orders|	CSV export corruption	|TC_14 – TC_16
+FR-X01–X03|	Accessibility & Compatibility |Accessibility violations, slow performance |TC_17 – TC_20
+
+🧩 3. Test Design Approach
+Technique|	Description | Example
+Equivalence Partitioning (EP)	Group valid/invalid inputs into partitions	Search field input validation
+Boundary Value Analysis (BVA)	Check edges of input ranges	Price range filter limits
+Decision Table Testing	Combine conditions and expected outputs	Checkout + payment flow
+State Transition Testing	Validate state changes	Cart → Checkout → Order
+Error Guessing	Identify likely user or system errors	Invalid payment input, broken image links
+
+🧪 4. Test Case Details
+🧱 Feature: Catalog & Discovery (FR-O01)
+Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
+TC_01	Verify search by title	“Atomic Habits”	1. Enter title in search box
+2. Click Search	Books titled Atomic Habits appear	EP
+TC_02	Filter by category	Category = “Fiction”	Select “Fiction” from filter	Only fiction books are displayed	EP
+TC_03	Sort by price ascending	Sort option = “Low to High”	Apply sort	Book list is arranged ascendingly by price	Decision Table
+TC_04	Boundary test on price range	Min=0, Max=5000	Apply filter	All books priced ≤5000 appear	BVA
+TC_05	Invalid filter input	Category = “123$$$”	Type in invalid category	Validation error or empty results displayed	Error Guessing
+
+🧱 Feature: Cart & Checkout (FR-O02)
+Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
+TC_06	Add item to cart	Book ID = 101	Click “Add to Cart”	Cart updates with item	EP
+TC_07	Remove item from cart	Existing item	Click “Remove”	Item removed, total updated	EP
+TC_08	Update quantity (boundary)	Qty = 0, 1, 10	Change qty	Qty=0 removes item; qty updates correctly	BVA
+TC_09	Checkout form validation	Missing required fields	Leave fields blank → Continue	Validation message displayed	Error Guessing
+TC_10	Complete checkout (4-step flow)	Valid data for all steps	Proceed through all steps	Order summary page appears successfully	State Transition
+
+🧱 Feature: Payments (FR-O03)
+Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
+TC_11	Successful Paystack payment	Valid sandbox card	Enter card details → Pay	“Payment Successful” message	EP
+TC_12	Failed payment	Expired card	Enter invalid card → Pay	“Payment Failed” message	EP
+TC_13	Currency validation	Currency = “KES”	Attempt payment in unsupported currency	Error or conversion alert	Decision Table
+🧱 Feature: Orders (FR-O04–O05)
+
+Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
+TC_14	View order history	UserID = 002	Go to Orders Page	All previous orders display correctly	EP
+TC_15	Download CSV export	Click “Export CSV”	File downloaded	CSV contains valid data, UTF-8 encoded	BVA
+TC_16	Refund request	OrderID = valid	Click “Request Refund”	Confirmation shown, refund logged	Decision Table
+🧱 Feature: Accessibility, Performance & Compatibility (FR-X01–X03)
+
+Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
+TC_17	Accessibility: ARIA labels	Use axe DevTools	Scan homepage	No “missing label” violations	Audit
+TC_18	Accessibility: Keyboard navigation	None	Navigate via Tab key	All elements focusable	Manual
+TC_19	Performance: LCP ≤ 2.5s	Lighthouse Audit	Run performance test	LCP < 2.5s	BVA
+TC_20	Compatibility test	Chrome, Firefox, Edge	Load site in each browser	UI responsive and functional	EP
+
+📊 5. Test Coverage Summary
+Functional Area	No. of Test Cases	Coverage Type
+Catalog & Discovery	5	Full functional + input validation
+Cart & Checkout	5	Flow + data validation
+Payments	3	Functional + integration
+Orders	3	Data persistence + export
+Accessibility & Compatibility	4	Cross-environment compliance
+Total	20	Comprehensive Phase 1 coverage
+
+🧾 6. Review & Approval
+Reviewer	Role	Signature / Approval
+Derick Maloba	Test Manager	
+Margaret Wairimu	Risk Analyst	✅
+Molefi Mothibi	Test Executor	
