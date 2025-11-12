@@ -21,29 +21,28 @@ FR-X01–X03|	Accessibility & Compatibility |Accessibility violations, slow perf
 
 🧩 3. Test Design Approach
 Technique|	Description | Example
-Equivalence Partitioning (EP)	Group valid/invalid inputs into partitions	Search field input validation
-Boundary Value Analysis (BVA)	Check edges of input ranges	Price range filter limits
-Decision Table Testing	Combine conditions and expected outputs	Checkout + payment flow
-State Transition Testing	Validate state changes	Cart → Checkout → Order
-Error Guessing	Identify likely user or system errors	Invalid payment input, broken image links
+Equivalence Partitioning (EP)|	Group valid/invalid inputs into partitions|	Search field input validation
+Boundary Value Analysis (BVA)|	Check edges of input ranges|	Price range filter limits
+Decision Table Testing|	Combine conditions and expected outputs|	Checkout + payment flow
+State Transition Testing|	Validate state changes|	Cart → Checkout → Order
+Error Guessing|	Identify likely user or system errors|	Invalid payment input, broken image links
 
 🧪 4. Test Case Details
 🧱 Feature: Catalog & Discovery (FR-O01)
-Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
-TC_01	Verify search by title	“Atomic Habits”	1. Enter title in search box
-2. Click Search	Books titled Atomic Habits appear	EP
-TC_02	Filter by category	Category = “Fiction”	Select “Fiction” from filter	Only fiction books are displayed	EP
-TC_03	Sort by price ascending	Sort option = “Low to High”	Apply sort	Book list is arranged ascendingly by price	Decision Table
-TC_04	Boundary test on price range	Min=0, Max=5000	Apply filter	All books priced ≤5000 appear	BVA
-TC_05	Invalid filter input	Category = “123$$$”	Type in invalid category	Validation error or empty results displayed	Error Guessing
+Test Case ID|	Test Condition|	Test Data	Steps| Expected Result|	Technique
+TC_01| Verify search by title|	“Atomic Habits”|	1. Enter title in search box 2. Click Search|	Books titled Atomic Habits| appear	EP
+TC_02|	Filter by category|	Category = “Fiction”|	Select “Fiction” from filter|	Only fiction books are displaye|	EP
+TC_03|	Sort by price ascending|	Sort option = “Low to High”|	Apply sort|	Book list is arranged ascendingly by price	|Decision Table
+TC_04|Boundary test on price range|	Min=0, Max=5000|	Apply filter|	All books priced ≤5000 appear|	BVA
+TC_05|Invalid filter input	|Category = “123$$$”	|Type in invalid category	|Validation error or empty results displayed	|Error Guessing
 
 🧱 Feature: Cart & Checkout (FR-O02)
-Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
-TC_06	Add item to cart	Book ID = 101	Click “Add to Cart”	Cart updates with item	EP
-TC_07	Remove item from cart	Existing item	Click “Remove”	Item removed, total updated	EP
-TC_08	Update quantity (boundary)	Qty = 0, 1, 10	Change qty	Qty=0 removes item; qty updates correctly	BVA
-TC_09	Checkout form validation	Missing required fields	Leave fields blank → Continue	Validation message displayed	Error Guessing
-TC_10	Complete checkout (4-step flow)	Valid data for all steps	Proceed through all steps	Order summary page appears successfully	State Transition
+Test Case ID|	Test Condition|	Test Data	|Steps|	Expected Result|	Technique
+TC_06|	Add item to cart	Book ID = 101	Click “Add to Cart”	Cart updates with item	EP
+TC_07	|Remove item from cart	Existing item	Click “Remove”	Item removed, total updated	EP
+TC_08	|Update quantity (boundary)	Qty = 0, 1, 10	Change qty	Qty=0 removes item; qty updates correctly	BVA
+TC_09	|Checkout form validation	Missing required fields	Leave fields blank → Continue	Validation message displayed	Error Guessing
+TC_10	|Complete checkout (4-step flow)	Valid data for all steps	Proceed through all steps	Order summary page appears successfully	State Transition
 
 🧱 Feature: Payments (FR-O03)
 Test Case ID	Test Condition	Test Data	Steps	Expected Result	Technique
