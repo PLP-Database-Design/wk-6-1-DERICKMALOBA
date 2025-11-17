@@ -147,4 +147,4 @@ To ensure the **Book Store App** functions correctly, efficiently, and securely 
 
 ### ✅ **Summary**
 This Phase 1 Test Plan establishes the foundation for the Book Store App QA project by defining the scope, environment setup, risk assessment, and team responsibilities.  
-The next phase (Week 2) will focus on **Test Case Design and Early Execution** based on the functional requirements provided.
+The next phase (Week 2) will focus on **Test Case Design and Early Execution** based on the functional requirements provided....
